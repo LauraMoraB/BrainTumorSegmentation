@@ -1,9 +1,10 @@
 # Brain Tumor Segmentation
 
-This project proposes the usage of V-Net and 3D-UNet based models for semantic segmentation in 3D-MRI Brain Tumor Segmentation and identify certain and uncertain predictions using variance for local information and entropy for a global measurment.
+This repository contains the code of the work presented in the paper
+[MRI Brain Tumor Segmentation and Uncertainty Estimation using 3D-Unet architectures](https://arxiv.org/abs/2012.15294)
+which is used to participate on the BraTS'20 challenge on Brain Tumor Segmentation, for tasks 1 and 3.
 
-The proposed model and uncertainty measurments are used to participate on the BraTS'20 challenge on Brain Tumor Segmentation, for tasks 1 and 3.
-
+This work proposes the usage of V-Net and 3D-UNet based models for semantic segmentation in 3D-MRI Brain Tumor Segmentation and identifies certain and uncertain predictions at test time.
 
 ## Repository Structure
     |__ resources/
@@ -26,6 +27,39 @@ The proposed model and uncertainty measurments are used to participate on the Br
                
     |__ tests/
     |__ README.md
+    
+    
+## Dataset structure
+
+The dataset used in this repository is the official one provided by BraTS20 for training, validation and test.
+
+For each patient, they provide a folder with the following files (`*_seg.nii.gz` is only provided for the training set)
+```
+BraTS20_Training_001/
+    BraTS20_Training_001_flair.nii.gz
+    BraTS20_Training_001_seg.nii.gz
+    BraTS20_Training_001_t1.nii.gz
+    BraTS20_Training_001_t1ce.nii.gz
+    BraTS20_Training_001_t2.nii.gz
+```
+
+In this project, the data is expected to be separated by the three different sets and by sampling technique
+(in case the sampling may be computed beforehand). As an example:
+```
+* Train: ~/train/source_sampling/BraTS20_Training_00*/*.nii.gz
+* Validation: ~/validation/source_sampling/BraTS20_Training_00*/*.nii.gz
+* Test: ~/test/source_sampling/BraTS20_Training_00*/*.nii.gz
+```
+
+It also requires the `brats20_data.csv` which has the following information:
+
+| ID | Grade | subject_ID | Center | Patch | Size | Train |
+| -- | ----- | ---------- | ------ | ----- | ---- | ----- |
+| 1 | HGG | BraTS20_Training_001 | CBICA | BraTS20_Training_001 | 240x240x155 | train |
+| 2 | LGG | BraTS20_Training_270 | TMC | BraTS20_Training_270 | 240x240x155 | test |
+
+The *Train* column is used to select some samples for testing.
+
 
 ## Installation
 
