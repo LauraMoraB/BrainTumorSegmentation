@@ -3,7 +3,7 @@ nilearn==0.6.0
 torchsummary==1.5.1
 nibabel==3.0.0
 tqdm==4.38.0
-numpy==1.16.4
+numpy==1.22.0
 opencv_python==4.2.0.32
 torch==1.4.0
 torchvision==0.5.0
